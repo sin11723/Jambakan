@@ -7,8 +7,11 @@
 
         <!-- Desktop Navigation -->
         <div style="display: none; gap: 2rem; align-items: center;" class="desktop-nav">
+             <a href="{{ route('home') }}" style="color: {{ request()->routeIs('home') ? 'var(--primary-green)' : 'var(--text-muted)' }}; font-weight: 600; transition: color 0.3s;">
+                Home
+            </a>
             <a href="{{ route('dashboard') }}" style="color: {{ request()->routeIs('dashboard') ? 'var(--primary-green)' : 'var(--text-muted)' }}; font-weight: 600; transition: color 0.3s;">
-                Beranda
+                Profile Desa
             </a>
             <a href="{{ route('products.index') }}" style="color: {{ request()->routeIs('products.*') ? 'var(--primary-green)' : 'var(--text-muted)' }}; font-weight: 600; transition: color 0.3s;">
                 Produk
