@@ -23,20 +23,37 @@
         box-sizing: border-box;
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: var(--text-dark);
         background: #ffffff;
+        line-height: 1.6;
     }
 
     /* ===== HERO SECTION ===== */
     .hero-section {
-        background: white;
-        padding: 100px 20px;
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        padding: 120px 20px;
         color: var(--text-dark);
         text-align: center;
         position: relative;
         overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
     }
 
     .hero-content {
@@ -47,18 +64,30 @@
     }
 
     .hero-section h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 700;
-        margin-bottom: 2rem;
-        line-height: 1.2;
-        letter-spacing: -0.5px;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        letter-spacing: -1px;
         animation: slideDown 0.8s ease-out;
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+        animation: slideUp 0.8s ease-out 0.2s both;
     }
 
     @keyframes slideDown {
         from {
             opacity: 0;
-            transform: translateY(-30px);
+            transform: translateY(-40px);
         }
         to {
             opacity: 1;
@@ -69,7 +98,7 @@
     @keyframes slideUp {
         from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
         }
         to {
             opacity: 1;
@@ -79,17 +108,17 @@
 
     .hero-buttons {
         display: flex;
-        gap: 15px;
+        gap: 1rem;
         justify-content: center;
         flex-wrap: wrap;
         animation: slideUp 0.8s ease-out 0.4s both;
     }
 
     .btn-hero {
-        padding: 12px 32px;
-        font-size: 0.95rem;
+        padding: 14px 36px;
+        font-size: 1rem;
         font-weight: 600;
-        border-radius: 8px;
+        border-radius: 50px;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         text-decoration: none;
         display: inline-flex;
@@ -99,34 +128,34 @@
         cursor: pointer;
     }
 
-    .btn-hero-light {
-        background: #6b7280;
+    .btn-hero-primary {
+        background: var(--primary-green);
         color: white;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
     }
 
-    .btn-hero-light:hover {
-        background: #4b5563;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    .btn-hero-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
     }
 
-    .btn-hero-outline {
-        background: #6b7280;
-        color: white;
-        border: 2px solid #6b7280;
+    .btn-hero-secondary {
+        background: white;
+        color: var(--primary-green);
+        border: 2px solid var(--primary-green);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
-    .btn-hero-outline:hover {
-        background: #4b5563;
-        border-color: #4b5563;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    .btn-hero-secondary:hover {
+        background: var(--primary-light);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
     }
 
     /* ===== SECTION WRAPPER ===== */
     .section-wrapper {
-        padding: 80px 20px;
+        padding: 100px 20px;
     }
 
     .section-wrapper.bg-light {
@@ -139,8 +168,8 @@
     }
 
     .section-title {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        font-weight: 700;
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: 800;
         text-align: center;
         margin-bottom: 1rem;
         color: var(--text-dark);
@@ -150,53 +179,50 @@
     .section-subtitle {
         text-align: center;
         color: var(--text-muted);
-        font-size: 1.05rem;
-        margin-bottom: 3.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 4rem;
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
-        line-height: 1.7;
+        line-height: 1.8;
     }
 
     /* ===== FEATURED PRODUCTS SECTION ===== */
+    /* Updated featured grid layout to match mockup: 2 large cards on top, 4 small cards below */
     .featured-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        margin-bottom: 24px;
+        gap: 28px;
+        margin-bottom: 28px;
     }
 
     .featured-grid-small {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
+        gap: 28px;
     }
 
     /* ===== PRODUCT GRID ===== */
+    /* Simplified product grid to maintain consistent 4-column layout */
     .product-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-    }
-
-    .product-grid-item:nth-child(5) {
-        grid-column: 2 / 4;
-        justify-self: center;
-        max-width: 100%;
+        gap: 28px;
     }
 
     /* ===== NEWS GRID ===== */
     .news-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 28px;
     }
 
     /* ===== GALLERY GRID ===== */
+    /* Updated gallery grid to 2x2 layout */
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 28px;
     }
 
     /* ===== PRODUCT CARDS ===== */
@@ -210,12 +236,29 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        position: relative;
+    }
+
+    .product-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-green) 0%, var(--primary-dark) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .product-card:hover {
         transform: translateY(-12px);
         box-shadow: var(--shadow-lg);
         border-color: var(--primary-light);
+    }
+
+    .product-card:hover::before {
+        opacity: 1;
     }
 
     .product-image {
@@ -237,7 +280,7 @@
     }
 
     .product-card:hover .product-image img {
-        transform: scale(1.08);
+        transform: scale(1.1);
     }
 
     .featured-card .product-image {
@@ -269,7 +312,7 @@
 
     .card-title {
         font-size: 1.15rem;
-        font-weight: 600;
+        font-weight: 700;
         color: var(--text-dark);
         line-height: 1.4;
     }
@@ -283,8 +326,8 @@
     }
 
     .price-tag {
-        font-size: 1.35rem;
-        font-weight: 700;
+        font-size: 1.4rem;
+        font-weight: 800;
         color: var(--primary-green);
         margin-top: auto;
         padding-top: 12px;
@@ -292,7 +335,7 @@
     }
 
     .badge-category {
-        background: var(--primary-green);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
         color: white;
         padding: 6px 14px;
         border-radius: 20px;
@@ -300,6 +343,7 @@
         font-weight: 600;
         white-space: nowrap;
         flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
     }
 
     .date-badge {
@@ -327,34 +371,37 @@
 
     /* ===== CTA SECTION ===== */
     .cta-section {
-        background: linear-gradient(135deg, var(--primary-light) 0%, #a7f3d0 100%);
-        padding: 60px 20px;
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
+        padding: 80px 20px;
         border-radius: 20px;
         margin: 60px 20px;
         text-align: center;
+        color: white;
+        box-shadow: var(--shadow-lg);
     }
 
     .cta-section h3 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--text-dark);
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: white;
         margin-bottom: 1rem;
     }
 
     .cta-section p {
-        color: var(--text-muted);
-        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
         margin-bottom: 2rem;
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+        line-height: 1.8;
     }
 
     .btn-primary-green {
-        background: var(--primary-green);
-        color: white;
+        background: white;
+        color: var(--primary-green);
         padding: 14px 40px;
-        font-weight: 600;
+        font-weight: 700;
         border-radius: 50px;
         border: none;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -362,24 +409,19 @@
         display: inline-block;
         cursor: pointer;
         font-size: 1rem;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     .btn-primary-green:hover {
-        background: var(--primary-dark);
         transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-        color: white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        background: var(--primary-light);
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
         .product-grid {
             grid-template-columns: repeat(3, 1fr);
-        }
-
-        .product-grid-item:nth-child(5) {
-            grid-column: 1 / -1;
         }
 
         .featured-grid-small {
@@ -400,6 +442,10 @@
             padding: 80px 20px;
         }
 
+        .hero-section h1 {
+            font-size: 2rem;
+        }
+
         .section-wrapper {
             padding: 60px 20px;
         }
@@ -414,10 +460,6 @@
 
         .product-grid {
             grid-template-columns: repeat(2, 1fr);
-        }
-
-        .product-grid-item:nth-child(5) {
-            grid-column: 1 / -1;
         }
 
         .news-grid {
@@ -475,45 +517,48 @@
 <section class="hero-section">
     <div class="hero-content">
         <h1>Selamat Datang di Desa Jambakan</h1>
+        <p>Temukan keindahan kerajinan tenun tradisional yang dibuat dengan penuh cinta oleh pengrajin lokal berpengalaman. Setiap helai kain menceritakan kisah budaya dan warisan turun-temurun.</p>
         <div class="hero-buttons">
-            <a href="/produk" class="btn-hero btn-hero-light">Lihat Produk</a>
-            <a href="/galeri" class="btn-hero btn-hero-outline">Galeri</a>
+            <a href="#produk" class="btn-hero btn-hero-primary">Lihat Produk</a>
+            <a href="#galeri" class="btn-hero btn-hero-secondary">Jelajahi Galeri</a>
         </div>
     </div>
 </section>
 
 <!-- Featured Products Section -->
-<section class="section-wrapper">
+<section class="section-wrapper" id="produk">
     <div class="container">
-        <h2 class="section-title">Karya Tenun Desa Jambakan</h2>
-        <p class="section-subtitle">Desa Jambakan terkenal dengan kerajinan tenun tradisional yang berkualitas tinggi dan telah diakui di berbagai pasar lokal maupun internasional</p>
+        <h2 class="section-title">Karya Tenun Unggulan</h2>
+        <p class="section-subtitle">Koleksi terbaik dari pengrajin Desa Jambakan yang telah memenangkan berbagai penghargaan internasional</p>
         
-        <!-- Featured cards grid: 2 large cards on top -->
+        <!-- Featured grid with 2 large cards -->
         <div class="featured-grid">
             @forelse($featuredProducts as $product)
-                <div class="product-card featured-card">
-                    <div class="product-image">
-                        @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
-                        @else
-                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                                Gambar tidak tersedia
-                            </div>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header">
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            @if($product->category)
-                                <span class="badge-category">{{ $product->category }}</span>
+                <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
+                    <div class="product-card featured-card">
+                        <div class="product-image">
+                            @if($product->image)
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
+                            @else
+                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                                    📷 Gambar tidak tersedia
+                                </div>
                             @endif
                         </div>
-                        <p class="card-text">{{ Str::limit($product->description, 120) }}</p>
-                        @if($product->price)
-                            <div class="price-tag">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
-                        @endif
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                @if($product->category)
+                                    <span class="badge-category">{{ $product->category }}</span>
+                                @endif
+                            </div>
+                            <p class="card-text">{{ Str::limit($product->description, 120) }}</p>
+                            @if($product->price)
+                                <div class="price-tag">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
+                            @endif
+                        </div>
                     </div>
-                </div>
+                </a>
             @empty
                 <div class="empty-state">
                     <p>Belum ada produk unggulan</p>
@@ -521,55 +566,17 @@
             @endforelse
         </div>
 
-        <!-- Small product cards grid: 4 columns below featured cards -->
+        <!-- Featured grid with 4 small cards -->
         <div class="featured-grid-small">
             @forelse($allProducts->take(4) as $product)
-                <div class="product-card">
-                    <div class="product-image">
-                        @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
-                        @else
-                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                                Gambar tidak tersedia
-                            </div>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title">{{ Str::limit($product->name, 35) }}</h6>
-                        @if($product->category)
-                            <p class="card-text">{{ $product->category }}</p>
-                        @endif
-                        @if($product->price)
-                            <div class="price-tag">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
-                        @endif
-                    </div>
-                </div>
-            @empty
-                <div class="empty-state">
-                    <p>Belum ada produk</p>
-                </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
-<!-- Product Grid Section -->
-<section class="section-wrapper bg-light">
-    <div class="container">
-        <h2 class="section-title">Produk Tenun Kami</h2>
-        <p class="section-subtitle">Koleksi lengkap tenun dan batik dari Desa Jambakan yang dikerjakan oleh pengrajin berpengalaman dengan teknik tradisional yang turun temurun</p>
-        
-        <!-- Product grid: 4 columns with 5 items (4 on top, 1 centered below) -->
-        <div class="product-grid">
-            @forelse($allProducts as $product)
-                <div class="product-grid-item">
+                <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="product-image">
                             @if($product->image)
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
                             @else
                                 <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                                    Gambar tidak tersedia
+                                    📷
                                 </div>
                             @endif
                         </div>
@@ -583,7 +590,46 @@
                             @endif
                         </div>
                     </div>
+                </a>
+            @empty
+                <div class="empty-state">
+                    <p>Belum ada produk</p>
                 </div>
+            @endforelse
+        </div>
+    </div>
+</section>
+
+<!-- Product Grid Section -->
+<section class="section-wrapper bg-light">
+    <div class="container">
+        <h2 class="section-title">Semua Produk Tenun</h2>
+        <p class="section-subtitle">Jelajahi koleksi lengkap tenun dan batik dari Desa Jambakan yang dikerjakan dengan teknik tradisional turun-temurun</p>
+        
+        <div class="product-grid">
+            @forelse($allProducts as $product)
+                <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit; height: 100%; display: flex;">
+                    <div class="product-card" style="width: 100%;">
+                        <div class="product-image">
+                            @if($product->image)
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
+                            @else
+                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                                    📷
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">{{ Str::limit($product->name, 35) }}</h6>
+                            @if($product->category)
+                                <p class="card-text">{{ $product->category }}</p>
+                            @endif
+                            @if($product->price)
+                                <div class="price-tag">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
+                            @endif
+                        </div>
+                    </div>
+                </a>
             @empty
                 <div class="empty-state">
                     <p>Belum ada produk tersedia</p>
@@ -594,31 +640,32 @@
 </section>
 
 <!-- News Section -->
-<section class="section-wrapper">
+<section class="section-wrapper" id="berita">
     <div class="container">
-        <h2 class="section-title">Berita Terkini</h2>
-        <p class="section-subtitle">Informasi dan update terbaru seputar kegiatan desa</p>
+        <h2 class="section-title">Berita & Update Terkini</h2>
+        <p class="section-subtitle">Informasi dan update terbaru seputar kegiatan, event, dan perkembangan Desa Jambakan</p>
         
-        <!-- News grid: 3 columns -->
         <div class="news-grid">
             @forelse($news as $article)
-                <div class="product-card news-card">
-                    <div class="product-image">
-                        @if($article->image)
-                            <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" loading="lazy">
-                        @else
-                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                                Gambar tidak tersedia
+                <a href="{{ route('news.show', $article->id) }}" style="text-decoration: none; color: inherit;">
+                    <div class="product-card news-card">
+                        <div class="product-image">
+                            @if($article->image)
+                                <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" loading="lazy">
+                            @else
+                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                                    📰
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">{{ Str::limit($article->title, 60) }}</h6>
+                            <div class="date-badge">
+                                📅 {{ $article->published_at->format('d F Y') }}
                             </div>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title">{{ Str::limit($article->title, 60) }}</h6>
-                        <div class="date-badge">
-                            📅 {{ $article->published_at->format('d F Y') }}
                         </div>
                     </div>
-                </div>
+                </a>
             @empty
                 <div class="empty-state">
                     <p>Belum ada berita</p>
@@ -629,29 +676,31 @@
 </section>
 
 <!-- Gallery Section -->
-<section class="section-wrapper bg-light">
+<section class="section-wrapper bg-light" id="galeri">
     <div class="container">
         <h2 class="section-title">Galeri Desa</h2>
-        <p class="section-subtitle">Dokumentasi kegiatan dan keindahan Desa Jambakan</p>
+        <p class="section-subtitle">Dokumentasi kegiatan, keindahan alam, dan momen berharga dari Desa Jambakan</p>
         
-        <!-- Gallery grid: 2 columns for 2x2 layout -->
+        <!-- Gallery grid with 2x2 layout -->
         <div class="gallery-grid">
             @forelse($galleries as $gallery)
-                <div class="product-card gallery-card">
-                    <div class="product-image">
-                        @if($gallery->image)
-                            <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}" loading="lazy">
-                        @else
-                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                                Gambar tidak tersedia
-                            </div>
-                        @endif
+                <a href="{{ route('gallery.show', $gallery->id) }}" style="text-decoration: none; color: inherit;">
+                    <div class="product-card gallery-card">
+                        <div class="product-image">
+                            @if($gallery->image)
+                                <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}" loading="lazy">
+                            @else
+                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                                    🖼️
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">{{ $gallery->title }}</h6>
+                            <p class="card-text">{{ Str::limit($gallery->description, 100) }}</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h6 class="card-title">{{ $gallery->title }}</h6>
-                        <p class="card-text">{{ Str::limit($gallery->description, 100) }}</p>
-                    </div>
-                </div>
+                </a>
             @empty
                 <div class="empty-state">
                     <p>Belum ada galeri</p>
@@ -662,12 +711,25 @@
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section">
+<section class="cta-section" id="kontak">
     <div class="container">
         <h3>Tertarik dengan Produk Kami?</h3>
-        <p>Hubungi kami untuk pemesanan atau informasi lebih lanjut tentang kerajinan tenun tradisional Desa Jambakan</p>
-        <a href="/kontak" class="btn-primary-green">Hubungi Kami</a>
+        <p>Hubungi kami untuk pemesanan, kolaborasi, atau informasi lebih lanjut tentang kerajinan tenun tradisional Desa Jambakan</p>
+        <a href="/kontak" class="btn-primary-green">Hubungi Kami Sekarang</a>
     </div>
 </section>
+
+<script>
+    // Smooth scroll untuk anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
 
 @endsection

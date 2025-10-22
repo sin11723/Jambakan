@@ -9,7 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 
 // Public Routes
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
 Route::get('/produk/{product}', [ProductController::class, 'show'])->name('products.show');
@@ -25,6 +25,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/produk/{id}', [HomeController::class, 'showProduct'])->name('product.show');
+Route::get('/berita/{id}', [HomeController::class, 'showNews'])->name('news.show');
+Route::get('/galeri/{id}', [HomeController::class, 'showGallery'])->name('gallery.show');
 
 
 require __DIR__.'/auth.php';
